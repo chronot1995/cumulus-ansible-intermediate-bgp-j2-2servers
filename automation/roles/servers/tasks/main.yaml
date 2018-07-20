@@ -1,21 +1,10 @@
 ---
 
-- name: Enable VLAN upon reboot
-  shell: echo 8021q | sudo tee -a /etc/modules
-
-- name: Copy server02 VLAN-enabled interfaces file
-  copy:
-    src: interfaces-vlan
-    dest: /etc/network/interfaces
-    backup: yes
-  when: inventory_hostname == "server02"
-
 - name: Copy interfaces configuration
   template:
     src: interfaces.j2
     dest: /etc/network/interfaces
     backup: yes
-  when: inventory_hostname != "server02"
 
 - name: Sleep for server to disconnect
   pause:
