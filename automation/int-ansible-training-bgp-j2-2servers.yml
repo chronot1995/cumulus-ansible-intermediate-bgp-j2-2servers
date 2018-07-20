@@ -6,3 +6,8 @@
   become: true
   roles:
   - switches
+
+- hosts: servers
+  become: true
+  roles:
+  - servers
