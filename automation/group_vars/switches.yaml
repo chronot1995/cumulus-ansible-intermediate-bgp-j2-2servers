@@ -20,6 +20,7 @@ node:
     ports:
       - swp1
       - swp2
+      - swp10
     lacp:
       interfaces:
         members:
@@ -42,9 +43,9 @@ node:
           internal:
             peers:
       svi:
-        vlansvi:
-          ip:
-          vlan:
+        vlan11:
+          ip: 192.168.11.1/24
+          vlan: 11
           vrrp:
             mac:
             ip:
@@ -69,6 +70,7 @@ node:
     ports:
       - swp1
       - swp2
+      - swp10
     lacp:
       interfaces:
         members:
@@ -91,9 +93,9 @@ node:
           internal:
             peers:
       svi:
-        vlansvi:
-          ip:
-          vlan:
+        vlan22:
+          ip: 192.168.22.1/24
+          vlan: 22
           vrrp:
             mac:
             ip:
