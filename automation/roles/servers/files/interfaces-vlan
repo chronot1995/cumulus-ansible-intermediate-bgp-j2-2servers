@@ -1,0 +1,25 @@
+#########
+## Configured by Ansible
+#########
+
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+  address 172.16.100.200/24
+
+auto vlan20
+iface vlan20 inet static
+  vlan-raw-device eth1
+  address 192.168.100.200/24
+  ### STATIC ROUTING ###
+  post-up route add -net 10.0.0.0 netmask 255.0.0.0 gw 192.168.100.1
+  post-up route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.100.1
+  pre-down route del -net 10.0.0.0 netmask 255.0.0.0 gw 192.168.100.1
+  pre-down route del -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.100.1
+
+source /etc/network/interfaces.d/*.cfg
