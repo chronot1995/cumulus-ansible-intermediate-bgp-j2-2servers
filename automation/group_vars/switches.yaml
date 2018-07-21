@@ -27,7 +27,7 @@ node:
     switching:
       swp10:
         mode: access
-        vlans: 11
+        vlans: '11'
     routing:
       lo: 10.1.1.1/32
       ospf:
@@ -77,7 +77,7 @@ node:
     switching:
       swp10:
         mode: access
-        vlans: 22
+        vlans: '22'
     routing:
       lo: 10.2.2.2/32
       ospf:
