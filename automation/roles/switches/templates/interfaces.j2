@@ -24,7 +24,11 @@ global variable of "global_vlan_list." We will use this variable to
 populate the VLAN Aware Bridge at the end of this file
 #}
 {% for interface in node[inventory_hostname]["ports"] -%}
-{% if node[inventory_hostname]["switching"][interface] is defined %}
+auto {{interface}}
+iface {{interface}}
+{% endfor %}
+
+{#}{% if node[inventory_hostname]["switching"][interface] is defined %}
   {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
      {% do global_vlan_list.append(vlan) -%}
   {% endfor %}
