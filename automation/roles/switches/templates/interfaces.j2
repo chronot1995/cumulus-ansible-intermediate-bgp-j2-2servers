@@ -28,9 +28,9 @@ auto {{interface}}
 iface {{interface}}
 {% if node[inventory_hostname]["switching"][interface] is defined %}
 
-{% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] %}
-{% do global_vlan_list.append(vlan) %}
-THIS {{vlan}}
+{% for vlan2 in node[inventory_hostname]["switching"][interface][vlans] %}
+{% do global_vlan_list.append(vlan2) %}
+THIS {{ vlan2 }}
 {% endfor %}
 {% endif %}
 {% endfor %}
