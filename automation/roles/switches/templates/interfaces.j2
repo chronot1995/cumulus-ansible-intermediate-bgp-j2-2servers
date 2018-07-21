@@ -22,7 +22,7 @@ iface mgmt
 {# The next block of code will save all of the assigned VLANs to a
 global variable of "global_vlan_list." We will use this variable to
 populate the VLAN Aware Bridge at the end of this file
-#}
+
 {% for interface in node[inventory_hostname]["ports"] -%}
 {% if node[inventory_hostname]["switching"][interface] is defined %}
   {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
@@ -30,7 +30,7 @@ populate the VLAN Aware Bridge at the end of this file
   {% endfor %}
 {% endif %}
 {% endfor %}
-{#
+
 {% for interface in node[inventory_hostname]["ports"] -%}
 auto {{interface}}
 iface {{interface}}

@@ -75,9 +75,9 @@ node:
       interfaces:
         members:
     switching:
-      interface:
-        mode:
-        vlans:
+      swp10:
+        mode: access
+        vlans: 22
     routing:
       lo: 10.2.2.2/32
       ospf:
