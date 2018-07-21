@@ -30,7 +30,7 @@ populate the VLAN Aware Bridge at the end of this file
   {% endfor %}
 {% endif %}
 {% endfor %}
-
+{#
 {% for interface in node[inventory_hostname]["ports"] -%}
 auto {{interface}}
 iface {{interface}}
@@ -71,3 +71,4 @@ iface bridge
     bridge-vids {{ global_vlan_list | unique | sort | join(" ") }}
     bridge-vlan-aware yes
 {% endif %}
+#}
