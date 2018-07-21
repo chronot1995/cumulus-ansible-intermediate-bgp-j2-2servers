@@ -32,7 +32,7 @@ iface {{interface}}
     {% endfor %}
 #}  print "Outer Loop {{interface}}"
   {% endif %}
-{% endfor %}
+{%- endfor %}
 
 {#
   {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
