@@ -44,7 +44,7 @@ iface {{interface}}
    {% do bridge_ports.append(interface) -%}
    {% do vlan_list.append(vlan) -%}
 {% endfor %}
-   bridge-access {{vlan}}
+   bridge-access {{ node[inventory_hostname]["switching"][interface]["vlans"] }}
    {% set vlan_list = [] %}
 {% endif %}
 {% if node[inventory_hostname]["switching"][interface]["mode"] == "trunk" %}
