@@ -29,8 +29,8 @@ iface {{interface}}
   {% if node[inventory_hostname]["switching"][interface] is defined %}
 {#    {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
       print "Inner Loop {{vlan}}"
-#}    {% endfor %}
-  print "Outer Loop {{interface}}"
+    {% endfor %}
+#}  print "Outer Loop {{interface}}"
   {% endif %}
 {% endfor %}
 
