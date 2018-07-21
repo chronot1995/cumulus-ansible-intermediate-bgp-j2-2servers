@@ -26,6 +26,9 @@ populate the VLAN Aware Bridge at the end of this file
 {% for interface in node[inventory_hostname]["ports"] -%}
 auto {{interface}}
 iface {{interface}}
+{% if node[inventory_hostname]["switching"][interface] is defined %}
+print "Here!"
+{% endif %}
 {% endfor %}
 
 {#}{% if node[inventory_hostname]["switching"][interface] is defined %}
