@@ -30,6 +30,7 @@ iface {{interface}}
 
 {%- for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
 {% do global_vlan_list.append(vlan) -%}
+THIS {{vlan}}
 {% endfor %}
 {% endif -%}
 {% endfor -%}
