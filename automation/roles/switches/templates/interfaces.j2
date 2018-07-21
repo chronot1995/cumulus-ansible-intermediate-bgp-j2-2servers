@@ -27,9 +27,9 @@ populate the VLAN Aware Bridge at the end of this file
 auto {{interface}}
 iface {{interface}}
   {% if node[inventory_hostname]["switching"][interface] is defined %}
-    {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
+{#    {% for vlan in node[inventory_hostname]["switching"][interface]["vlans"] -%}
       print "Inner Loop {{vlan}}"
-    {% endfor %}
+#}    {% endfor %}
   print "Outer Loop {{interface}}"
   {% endif %}
 {% endfor %}
