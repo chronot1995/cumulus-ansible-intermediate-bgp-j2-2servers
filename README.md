@@ -1,12 +1,12 @@
-## begin-ansible-training-bgp-j2
+## int-ansible-training-bgp-j2-2servers
 
 ### Summary:
 
-This is an Ansible demo which configures two Cumulus VX switches with BGP using J2 / Jinja2 templates
+This is an Ansible demo which configures two Linux servers and two Cumulus VX switches with BGP using J2 / Jinja2 templates
 
 ### Network Diagram:
 
-![Network Diagram](https://github.com/chronot1995/begin-ansible-training-bgp-j2/blob/master/documentation/begin-ansible-training-bgp-j2.png)
+![Network Diagram](https://github.com/chronot1995/int-ansible-training-bgp-j2-2servers/blob/master/documentation/int-ansible-training-bgp-j2-2servers.png)
 
 ### Initializing the demo environment:
 
@@ -22,11 +22,11 @@ First, make sure that the following is currently running on your machine:
 
 3. Copy the Git repo to your local machine:
 
-    ```git clone https://github.com/chronot1995/begin-ansible-training-bgp-j2```
+    ```git clone https://github.com/chronot1995/int-ansible-training-bgp-j2-2servers```
 
 4. Change directories to the following
 
-    ```begin-ansible-training-bgp-j2```
+    ```int-ansible-training-bgp-j2-2servers```
 
 6. Run the following:
 
@@ -41,11 +41,11 @@ First, make sure that the following is currently running on your machine:
 
 2. Copy the Git repo unto the oob-mgmt-server:
 
-    ```git clone https://github.com/chronot1995/begin-ansible-training-bgp-j2```
+    ```git clone https://github.com/chronot1995/int-ansible-training-bgp-j2-2servers```
 
 3. Change directories to the following
 
-    ```begin-ansible-training-bgp-j2/automation```
+    ```int-ansible-training-bgp-j2-2servers/automation```
 
 4. Run the following:
 
@@ -76,19 +76,19 @@ cumulus@switch01:mgmt-vrf:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
 BGP router identifier 10.1.1.1, local AS number 65111 vrf-id 0
-BGP table version 4
-RIB entries 5, using 760 bytes of memory
+BGP table version 5
+RIB entries 9, using 1368 bytes of memory
 Peers 2, using 39 KiB of memory
 
 Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-switch02(swp1)  4      65222     118     118        0    0    0 00:05:38            2
-switch02(swp2)  4      65222     117     117        0    0    0 00:05:35            2
+switch02(swp1)  4      65222      32      32        0    0    0 00:01:24            3
+switch02(swp2)  4      65222      32      32        0    0    0 00:01:24            3
 
 Total number of neighbors 2
 
 ```
 
-One should see that the corresponding loopback route is installed with two next hops / ECMP:
+One should see that the corresponding loopback route is installed with two next hops / ECMP. Also, the local SVIs that are attached to the servers are present in this output:
 
 ```
 cumulus@switch01:mgmt-vrf:~$ net show route
@@ -100,11 +100,14 @@ Codes: K - kernel route, C - connected, S - static, R - RIP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel,
        > - selected route, * - FIB route
 
-K>* 0.0.0.0/0 [0/0] via 10.0.2.2, vagrant, 00:06:11
-C>* 10.0.2.0/24 is directly connected, vagrant, 00:06:11
-C>* 10.1.1.1/32 is directly connected, lo, 00:06:11
-B>* 10.2.2.2/32 [20/0] via fe80::4638:39ff:fe00:2, swp1, 00:06:02
-  *                    via fe80::4638:39ff:fe00:4, swp2, 00:06:02
+K>* 0.0.0.0/0 [0/0] via 10.0.2.2, vagrant, 00:01:43
+C>* 10.0.2.0/24 is directly connected, vagrant, 00:01:43
+C>* 10.1.1.1/32 is directly connected, lo, 00:01:43
+B>* 10.2.2.2/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, 00:01:40
+  *                    via fe80::4638:39ff:fe00:8, swp2, 00:01:40
+C>* 192.168.11.0/24 is directly connected, vlan11, 00:01:43
+B>* 192.168.22.0/24 [20/0] via fe80::4638:39ff:fe00:4, swp1, 00:01:40
+  *                        via fe80::4638:39ff:fe00:8, swp2, 00:01:40
 ```
 
 
@@ -121,7 +124,7 @@ B>* 10.2.2.2/32 [20/0] via fe80::4638:39ff:fe00:2, swp1, 00:06:02
 
 3. The following command was used to run the Topology Converter within the vx-simulation directory:
 
-    ```python2 topology_converter.py begin-ansible-training-bgp-j2.dot -c```
+    ```python2 topology_converter.py int-ansible-training-bgp-j2-2servers.dot -c```
 
     After the above command is executed, the following configuration changes are necessary:
 
