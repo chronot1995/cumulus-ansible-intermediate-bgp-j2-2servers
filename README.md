@@ -168,7 +168,6 @@ B>* 192.168.22.0/24 [20/0] via fe80::4638:39ff:fe00:4, swp1, 00:01:40
 ```
 
 
-
 ### Errata
 
 1. To shutdown the demo, run the following command from the vx-simulation directory:
